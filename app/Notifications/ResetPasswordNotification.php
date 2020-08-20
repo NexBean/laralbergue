@@ -59,10 +59,10 @@ class ResetPasswordNotification extends Notification implements ShouldQueue
             return call_user_func(static::$toMailCallback, $notifiable, $this->token);
         }
 
-        return (new MailMessage)
+        return (new MailMessage())
             ->subject('Recuperação de senha')
             ->line('Você está recebendo este e-mail porque recebemos uma solicitação de recuperação de senha para sua conta.')
-            ->action('Redefinir Senha', url(config('app.url').route('password.reset', $this->token, false)))
+            ->action('Redefinir Senha', url(config('app.url') . route('password.reset', $this->token, false)))
             ->line('Se você não solicitou uma recuperação de senha, nenhuma outra ação será necessária.');
     }
 
